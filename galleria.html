@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria - Il Giornalino</title>
+    <link rel="icon" type="image/png" href="/assets/logoScuola.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e53e3e">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <button id="btn-menu" class="hamburger">
+        <span class="linea"></span>
+        <span class="linea"></span>
+        <span class="linea"></span>
+    </button>
+
+    <nav id="menu-laterale" class="sidebar">
+        <button id="btn-chiudi" class="chiudi-menu">&times;</button>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="galleria.html">GALLERIA</a></li>
+            <li><a href="#">CHI SIAMO</a></li>
+        </ul>
+    </nav>
+
+    <main class="pagina-galleria">
+        <h1 class="titolo-galleria">Galleria Fotografica</h1>
+
+        <div class="carosello-container">
+            <button id="btn-prev" class="btn-freccia">&lt;</button>
+
+            <div class="cornice-immagine">
+                <img id="immagine-corrente" src="https://placehold.co/800x500/eeeeee/000000.png?text=FOTO+1" alt="Foto Galleria">
+            </div>
+
+            <button id="btn-next" class="btn-freccia">&gt;</button>
+
+            <div id="didascalia-corrente" class="didascalia-foto">
+                Seleziona una foto per leggere la descrizione...
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-strada">
+        <div class="footer-sinistra">
+            <h3>CONTATTI</h3>
+            <p>Email: redazione@ilgiornalino.edu.it</p>
+            <p>Instagram: @il_giornalino_scolastico</p>
+            <p>Sede: Aula 3B, Piano Terra</p>
+        </div>
+        <div class="footer-destra">
+            <img src="/assets/logoScuola.png" alt="Logo Scuola">
+            <img src="/assets/logoGiornalino.png" alt="Logo Giornalino">
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

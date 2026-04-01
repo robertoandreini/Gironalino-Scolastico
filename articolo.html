@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leggi Articolo</title>
+    <link href="/assets/logoGiornalino.png" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;800;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#e53e3e">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <button id="btn-menu" class="hamburger">
+        <span class="linea"></span>
+        <span class="linea"></span>
+        <span class="linea"></span>
+    </button>
+
+    <nav id="menu-laterale" class="sidebar">
+        <button id="btn-chiudi" class="chiudi-menu">&times;</button>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="galleria.html">GALLERIA</a></li>
+            <li><a href="#">CHI SIAMO</a></li>
+        </ul>
+    </nav>
+
+    <header class="slide-down mini-header">
+        <h1>il quinto plesso presenta...</h1>
+    </header>
+
+    <main id="lista-articoli">
+        <article class="pagina-articolo fade-in-up">
+            
+            <a href="index.html" class="btn-indietro">&larr; INDIETRO</a>
+
+            <div class="header-articolo">
+                <h1 id="titolo-singolo" class="titolo-principale">Caricamento...</h1>
+                <h2 id="sottotitolo-singolo" class="sottotitolo-principale"></h2>
+            </div>
+            
+            <div class="immagine-principale neo-shadow">
+                <img id="immagine-singola" src="" alt="Copertina">
+            </div>
+            
+            <div id="testo-singolo" class="corpo-testo">
+                <p>Attendere il caricamento dei dati dal server...</p>
+            </div>
+
+        </article>
+    </main>
+
+    <script src="js/app.js"></script>
+    <footer class="footer-strada">
+        <div class="footer-sinistra">
+            <h3>CONTATTI</h3>
+            <p>Email: redazione@ilgiornalino.edu.it</p>
+            <p>Instagram: @il_giornalino_scolastico</p>
+            <p>Sede: Aula 3B, Piano Terra</p>
+        </div>
+        <div class="footer-destra">
+           <img src="assets/logoScuola.png" alt="Logo Scuola">
+           <img src="assets/logoGiornalino.png" alt="Logo Giornalino">
+        </div>
+    </footer>
+</body>
+</html>

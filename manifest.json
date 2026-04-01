@@ -1,0 +1,21 @@
+{
+  "name": "Il Quinto Plesso",
+  "short_name": "Giornalino",
+  "description": "Ti presentiamo...",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e53e3e", 
+  "icons": [
+    {
+      "src": "/assets/logoGiornalino.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logoGiornalino.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

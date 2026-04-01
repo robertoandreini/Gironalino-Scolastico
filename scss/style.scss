@@ -1,0 +1,499 @@
+// ==========================================
+// 1. VARIABILI COLORI (Rosso, Nero, Bianco, Blu)
+// ==========================================
+$colore-sfondo: #ffffff;       // Bianco puro per lo sfondo principale
+$colore-testo: #000000;        // Nero per i testi
+$colore-bordo: #000000;        // Nero puro per linee e ombre
+
+// Colori di accento
+$accento-rosso: #e63946;       // Rosso vibrante
+$accento-blu: #1d3557;         // Blu scuro/navy per contrasto
+$accento-blu-chiaro: #457b9d;  // Blu medio per le ombre
+$bianco-puro: #ffffff;         // Bianco per i testi sui bottoni
+
+// Font
+$font-titoli: 'Archivo', sans-serif;
+$font-testo: 'Space Grotesk', sans-serif;
+
+// ==========================================
+// ANIMAZIONI GLOBALI
+// ==========================================
+@keyframes respiroSfondo {
+  0%   { background-color: $bianco-puro; } // Si parte dal bianco
+  50%  { background-color: #d1d5db; }      // A metà diventa grigio (lo stesso del foglio sollevato)
+  100% { background-color: $bianco-puro; } // Torna al bianco per chiudere il cerchio in modo invisibile
+}
+// ==========================================
+// 2. ANIMAZIONI (Keyframes)
+// ==========================================
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// Classi di utilità per animare elementi
+.fade-in-up { animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.slide-down { animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+// ==========================================
+// 3. RESET BASE
+// ==========================================
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: $font-testo;
+  background-color: $colore-sfondo;
+  color: $colore-testo;
+  background-image: radial-gradient(rgba(0,0,0,0.1) 1px, transparent 1px); // Puntinato scuro e leggero sul bianco
+  background-size: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  animation: respiroSfondo 4s infinite ease-in-out;
+}
+
+// Mixin per ombre nette (stile brutalista)
+@mixin neo-shadow {
+  border: 3px solid $colore-bordo;
+  box-shadow: 6px 6px 0px $colore-bordo;
+  border-radius: 8px;
+}
+
+.neo-shadow { @include neo-shadow; }
+
+// ==========================================
+// 4. MENU LATERALE
+// ==========================================
+.hamburger {
+  position: fixed;
+  top: 1.5rem; left: 1.5rem;
+  z-index: 100;
+  background: $bianco-puro; // Hamburger bianco per staccare dal fondo
+  border: 3px solid $colore-bordo;
+  border-radius: 50%;
+  width: 50px; height: 50px;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 4px;
+  box-shadow: 3px 3px 0 $colore-bordo;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 $colore-bordo;
+    background: $accento-rosso; // Diventa rosso al passaggio del mouse
+  }
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 $colore-bordo;
+  }
+
+  .linea { width: 25px; height: 3px; background: $colore-bordo; border-radius: 2px; }
+}
+
+.sidebar {
+  position: fixed; top: 0; left: -100%;
+  width: 300px; height: 100vh;
+  background-color: $accento-blu; // Sfondo blu per la sidebar
+  border-right: 4px solid $colore-bordo;
+  z-index: 1000;
+  padding: 2rem;
+  transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+
+  &.aperto { left: 0; }
+
+  .chiudi-menu {
+    font-size: 3rem; background: none; border: none;
+    color: $bianco-puro; cursor: pointer; float: right;
+  }
+
+  ul {
+    list-style: none; margin-top: 5rem; clear: both;
+    li { margin-bottom: 2rem;
+      a {
+        font-family: $font-titoli; font-size: 2rem; font-weight: 900;
+        color: $bianco-puro; text-decoration: none; // Testo bianco sul blu
+        display: block; transition: transform 0.2s ease, color 0.2s ease;
+        &:hover { transform: translateX(15px) skewX(-5deg); color: $accento-rosso; } // Diventa rosso al passaggio
+      }
+    }
+  }
+}
+
+// ==========================================
+// 5. HEADER
+// ==========================================
+header {
+  text-align: center; padding: 4rem 1rem 2rem 1rem;
+  
+  h1 {
+    font-family: $font-titoli; font-weight: 900;
+    font-size: clamp(3rem, 8vw, 5rem);
+    text-transform: uppercase;
+    color: $bianco-puro;
+    text-shadow: 
+      -2px -2px 0 $colore-bordo, 2px -2px 0 $colore-bordo, 
+      -2px 2px 0 $colore-bordo, 2px 2px 0 $colore-bordo, 
+      6px 6px 0 $accento-blu-chiaro; // Ombra blu
+    margin-bottom: 0.5rem;
+  }
+  
+  h2 { font-size: 1.2rem; font-weight: 700; background: $colore-testo; color: $colore-sfondo; display: inline-block; padding: 0.5rem 1rem; border-radius: 4px; transform: rotate(-2deg); }
+  
+  &.mini-header h1 { font-size: 2.5rem; text-shadow: 2px 2px 0 $colore-bordo, 4px 4px 0 $accento-rosso; margin-bottom: 0; } // Ombra rossa nella pagina articolo
+}
+
+// ==========================================
+// 6. CARD ARTICOLO (Base)
+// ==========================================
+.card-articolo {
+  @include neo-shadow;
+  background: $bianco-puro;
+  display: flex; 
+  flex-direction: column; // Tutte le card nascono in verticale
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 10px 10px 0px $colore-bordo;
+  }
+
+  .immagine-articolo {
+    width: 100%; 
+    border-bottom: 3px solid $colore-bordo; // Bordo sotto la foto
+    overflow: hidden;
+    
+    img { 
+      width: 100%; 
+      height: 220px; 
+      object-fit: cover; 
+      display: block; 
+      transition: transform 0.5s ease; 
+    }
+    &:hover img { transform: scale(1.05); }
+  }
+
+  .contenuto-articolo {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; // Fa allineare bene i bottoni in basso
+    
+    .titolo-articolo { font-family: $font-titoli; font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
+    .testo-articolo { font-size: 1.1rem; margin-bottom: 1.5rem; flex-grow: 1; }
+    
+    .leggi-tutto {
+      align-self: flex-start;
+      display: inline-block; padding: 0.8rem 1.5rem;
+      background: $accento-rosso; color: $bianco-puro; 
+      font-weight: 700; text-decoration: none;
+      @include neo-shadow; box-shadow: 3px 3px 0 $colore-bordo;
+      transition: all 0.2s ease;
+      &:hover { background: $accento-blu; transform: translate(-2px, -2px); box-shadow: 5px 5px 0 $colore-bordo; }
+    }
+  }
+}
+
+// ==========================================
+// 7. PAGINA SINGOLO ARTICOLO
+// ==========================================
+.pagina-articolo {
+  background: $bianco-puro; 
+  @include neo-shadow; 
+  padding: 3rem; 
+
+  //IL RECINTO PER IL TESTO
+
+  width:95%; //occupa quasi tutto lo schermo sui cellulari
+  max-width: 10000px; // ma su PC si ferma a 1000px
+  margin: 0 auto 4rem auto; // il magico "auto " centra tutto il blocco in mezzo
+  opacity: 0;
+
+  // Pulizia per evitare che il float rompa il contenitore
+  &::after { content: ""; display: table; clear: both; }
+
+  .btn-indietro { 
+    display: inline-block; margin-bottom: 2rem; font-weight: 700; color: $colore-bordo; 
+    text-decoration: none; background: $bianco-puro; padding: 0.5rem 1rem; 
+    border: 2px solid $colore-bordo; border-radius: 4px; box-shadow: 2px 2px 0 $colore-bordo; 
+    transition: all 0.2s ease; 
+    &:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 $colore-bordo; background: $accento-rosso; color: $bianco-puro; } 
+  }
+
+  .header-articolo { text-align: center; margin-bottom: 3rem; clear: both; }
+  .titolo-principale { font-family: $font-titoli; font-size: 3.5rem; font-weight: 900; line-height: 1; margin-bottom: 1rem; text-transform: uppercase; }
+  .sottotitolo-principale { font-size: 1.4rem; color: #4b5563; }
+
+  // LA MAGIA DELL'IMPAGINAZIONE A BANDIERA
+  .immagine-principale { 
+    float: left;            // Spinge l'immagine a sinistra e fa scorrere il testo a destra
+    max-width: 45%;         // L'immagine occupa poco meno di metà pagina (così il testo respira)
+    margin-right: 2.5rem;   // Spazio vuoto tra l'immagine e il testo
+    margin-bottom: 1.5rem;  // Spazio vuoto sotto l'immagine
+    border: 3px solid $colore-bordo; 
+    border-radius: 4px;
+    
+    // Per i cellulari, forziamo l'immagine a tornare a tutto schermo (altrimenti si restringe troppo)
+    @media (max-width: 768px) {
+      float: none;
+      max-width: 100%;
+      margin-right: 0;
+    }
+
+    img { width: 100%; max-height: 500px; object-fit: cover; display: block; } 
+  }
+
+  .corpo-testo {
+    font-size: 1.2rem; 
+    line-height: 1.8; 
+    text-align: justify; // L'effetto "Quotidiano": allinea il testo a destra e sinistra in modo netto
+    
+    p { margin-bottom: 1.5rem; }
+    
+    // Il mitico Capolettera Brutalista
+    p:first-of-type::first-letter { 
+      float: left; font-family: $font-titoli; font-weight: 900; font-size: 4.5rem; 
+      line-height: 0.8; margin-right: 12px; margin-top: 5px; color: $accento-rosso; 
+      text-shadow: 2px 2px 0 $colore-bordo; 
+    }
+  }
+}
+
+// ==========================================
+// 8. GRIGLIA EDITORIALE (La magia del layout)
+// ==========================================
+.griglia-dinamica {
+  display: grid;
+  grid-template-columns: 1fr; // Sui cellulari: 1 colonna
+  gap: 2.5rem; 
+  width: 95%; 
+  max-width: 1200px; 
+  margin: 0 auto 4rem auto;
+
+  // --- NUOVO EFFETTO "FOGLIO SOLLEVATO" ---
+  background: linear-gradient(135deg, #d1d5db 0%, $colore-sfondo 40%); // Sfumatura da grigio a bianco
+  border: 4px solid $colore-bordo; // Linea netta che fa da "bordo pagina"
+  box-shadow: 16px 16px 0px $colore-bordo; // Ombra gigante che solleva la pagina dal fondo
+  border-radius: 8px;
+  padding: 1.5rem; // Crea uno spazio tra i bordi del foglio e le card interne
+
+  // Su Tablet: 2 colonne
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 3rem; // Su schermi più grandi allarghiamo lo spazio interno per far respirare le card
+  }
+
+  // Su PC: 3 colonne + L'Articolo Eroe
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+
+    // Diciamo al primo articolo (il più recente) di fare il prepotente
+    .card-articolo:first-child {
+      grid-column: 1 / -1; 
+      flex-direction: row; 
+      
+      .immagine-articolo {
+        flex: 1.5; 
+        border-bottom: none;
+        border-right: 3px solid $colore-bordo;
+        img { height: 400px; } 
+      }
+      
+      .contenuto-articolo {
+        flex: 1;
+        padding: 3rem;
+        justify-content: center;
+        .titolo-articolo { font-size: 3.5rem; } 
+        .testo-articolo { font-size: 1.3rem; }
+        
+        // Domiamo il bottone gigante
+        .leggi-tutto {
+          align-self: flex-start; 
+          font-size: 1.2rem; 
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+}
+// ==========================================
+// 9. FOOTER (Sfumatura e Stile Street)
+// ==========================================
+.footer-strada {
+  // Sfumatura brutale in diagonale da rosso a nero
+  background: linear-gradient(135deg, #000000 0%,$accento-rosso 100%);
+  border-top: 5px solid $colore-bordo; // Linea di separazione netta
+  padding: 3rem 2rem;
+  color: $bianco-puro;
+  display: flex;
+  flex-direction: column; // Sul telefono mette i contatti sopra e i loghi sotto
+  gap: 3rem;
+  margin-top: auto; // Questo trucco spinge il footer sempre sul fondo della pagina
+  
+  // Quando lo schermo è grande (Tablet e PC), mettiamo a sinistra e a destra
+  @media (min-width: 768px) {
+    flex-direction: row; 
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-sinistra {
+    // "Stile Street": Titoli enormi, ombre dure e tutto in maiuscolo
+    h3 {
+      font-family: $font-titoli;
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      text-shadow: 3px 3px 0px $colore-bordo; // Ombra stile graffiti/stencil
+    }
+    
+    p {
+      font-family: $font-testo;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase; // Testo squadrato
+      letter-spacing: 1px;
+    }
+  }
+
+  .footer-destra {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    
+    img {
+      height: 140px; // L'altezza dei loghi
+      width: auto;
+      filter: drop-shadow(4px 4px 0px $colore-bordo);
+      transition: transform 0.2s ease;
+      
+      &:hover {
+        transform: translate(-2px, -2px) scale(1.1);
+      }
+    }
+  }
+}
+// ==========================================
+// 10. GALLERIA (Carosello Street)
+// ==========================================
+.pagina-galleria {
+  width: 95%;
+  max-width: 1000px;
+  margin: 3rem auto 6rem auto;
+  text-align: center;
+}
+
+.titolo-galleria {
+  font-family: $font-titoli;
+  font-size: 4rem;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  text-shadow: 4px 4px 0 $colore-bordo;
+  //reginge il testo su tell
+  @media (max-width:768px)
+  {
+    font-size: 2.2rem;
+    word-wrap:break-word; // Spezza la parola se troppo lunga
+  }
+}
+
+.carosello-container {
+  background: $bianco-puro;
+  border: 4px solid $colore-bordo;
+  box-shadow: 16px 16px 0 $colore-bordo; // Effetto pagina sollevata
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative; // Fondamentale per posizionare le frecce ai lati
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; 
+}
+  @media (max-width:768px)
+  {
+    .carosello-container{
+      padding:1rem; 
+    }
+    #btn-prev{left:-10px;}
+    #btn-next{right:-10px;}
+    .btn-freccia{width:45px;height:45px;font-size:1.5rem;
+    }
+  }
+
+
+.cornice-immagine {
+  width: 100%;
+  max-width: 800px;
+  border: 4px solid $colore-bordo;
+  margin-bottom: 1.5rem;
+  background: #000; // Sfondo nero dietro la foto se non riempie lo spazio
+  
+  img {
+    width: 100%;
+    display: block;
+    max-height: 550px;
+    object-fit: contain; // Assicura che la foto non venga tagliata
+  }
+}
+
+// I Bottoni direzionali giganti
+.btn-freccia {
+  position: absolute;
+  top: 45%; 
+  transform: translateY(-50%);
+  background: $accento-rosso;
+  color: $bianco-puro;
+  border: 4px solid $colore-bordo;
+  font-family: $font-titoli;
+  font-size: 3rem;
+  font-weight: 900;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 $colore-bordo;
+  transition: all 0.1s ease;
+  z-index: 10;
+
+  &:hover {
+    background: $bianco-puro;
+    color: $accento-rosso;
+    transform: translateY(-50%) translate(-2px, -2px);
+    box-shadow: 8px 8px 0 $colore-bordo;
+  }
+
+  &:active {
+    transform: translateY(-50%) translate(4px, 4px);
+    box-shadow: 0px 0px 0 $colore-bordo; 
+  }
+}
+
+#btn-prev { left: -35px; } 
+#btn-next { right: -35px; }
+
+@media (max-width: 768px) {
+  #btn-prev { left: 10px; }
+  #btn-next { right: 10px; }
+  .btn-freccia { width: 50px; height: 50px; font-size: 2rem; }
+}
+
+.didascalia-foto {
+  width: 100%;
+  font-family: $font-testo;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 1rem;
+  background: #f4f4f5; 
+  border: 3px solid $colore-bordo;
+  text-transform: uppercase;
+}
