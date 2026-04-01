@@ -559,4 +559,62 @@ header.mini-header h1 {
   background: #f4f4f5;
   border: 3px solid #000000;
   text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 1rem;
+  }
+  .titolo-principale,
+  .titolo-galleria {
+    font-size: 2rem !important;
+    text-align: center;
+    word-wrap: break-word;
+    letter-spacing: 0.5px;
+  }
+  .sottotitolo-principale {
+    font-size: 1rem !important;
+  }
+  main,
+  .pagina-articolo,
+  .pagina-galleria,
+  .griglia-dinamica {
+    padding: 1rem !important;
+  }
+  .carosello-container {
+    padding: 1rem;
+  }
+  #btn-prev {
+    left: 0px !important;
+  }
+  #btn-next {
+    right: 0px !important;
+  }
+  .btn-freccia {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+  .didascalia-foto {
+    font-size: 1.1rem !important;
+  }
+  .footer-strada {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem !important;
+  }
+  .footer-strada .footer-sinistra h3 {
+    font-size: 1.8rem;
+  }
+  .footer-strada .footer-sinistra p {
+    font-size: 1rem;
+  }
+  .footer-strada .footer-destra {
+    margin-top: 2rem;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .footer-strada .footer-destra img {
+    height: 70px;
+  }
 }/*# sourceMappingURL=style.css.map */

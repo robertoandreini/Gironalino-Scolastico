@@ -497,3 +497,75 @@ header {
   border: 3px solid $colore-bordo;
   text-transform: uppercase;
 }
+// ==========================================
+// 11. GESTIONE MOBILE GLOBALE (Sotto i 768px)
+// ==========================================
+@media (max-width: 768px) {
+  
+  // Rimpiccioliamo le basi:
+  body {
+    font-size: 1rem; // Riduciamo la dimensione base del testo
+  }
+
+  // --- 1. TITOLI RESPONSIVI ---
+  // Riduciamo drasticamente i titoli principali per l'articolo e la galleria
+  .titolo-principale,
+  .titolo-galleria {
+    font-size: 2rem !important; // Was 3.5rem or 4rem, facciamolo stare nello schermo
+    text-align: center;
+    word-wrap: break-word; // Fondamentale per spezzare parole lunghe
+    letter-spacing: 0.5px;
+  }
+  
+  // Riduciamo anche il sottotitolo
+  .sottotitolo-principale {
+    font-size: 1rem !important; // Was 1.4rem
+  }
+
+  // --- 2. LAYOUT GENERALE ---
+  // Riduciamo lo spazio sui lati di tutti i contenitori principali
+  main,
+  .pagina-articolo,
+  .pagina-galleria,
+  .griglia-dinamica {
+    padding: 1rem !important; // Meno spazio vuoto sui lati
+  }
+
+  // --- 3. CAROSELLO GALLERIA (Messo a posto) ---
+  .carosello-container {
+    padding: 1rem; // Spazio interno corretto (senza spazio tra 1 e rem)
+  }
+
+  #btn-prev { left: 0px !important; } // Rientriamo i bottoni
+  #btn-next { right: 0px !important; }
+
+  .btn-freccia {
+    width: 45px; // Più piccoli
+    height: 45px;
+    font-size: 1.5rem;
+  }
+
+  .didascalia-foto {
+    font-size: 1.1rem !important; // Riduciamo il testo della didascalia
+  }
+
+  // --- 4. FOOTER STREET RESPONSIVO ---
+  .footer-strada {
+    flex-direction: column; // Impiliamo verticalmente i contatti e i loghi
+    text-align: center;
+    padding: 2rem 1rem !important; // Meno padding e centrato
+
+    .footer-sinistra {
+      h3 { font-size: 1.8rem; } // Was 2.5rem
+      p { font-size: 1rem; } // Was 1.1rem
+    }
+
+    .footer-destra {
+      margin-top: 2rem;
+      justify-content: center; // Centriamo i loghi
+      gap: 1rem;
+
+      img { height: 70px; } // Rimpiccioliamo i loghi
+    }
+  }
+}
